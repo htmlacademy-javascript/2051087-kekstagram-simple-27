@@ -20,4 +20,4 @@ function isAllowedLength (string, maxValue) {
   }
   return true;
 }
-isAllowedLength('keks', 10);
+isAllowedLength('keks', 9);
