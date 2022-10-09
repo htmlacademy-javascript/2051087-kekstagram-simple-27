@@ -89,9 +89,12 @@ const DESCRIPTIONS = [
 ];
 const SIMILAR_DESCRIPTION_COUNT = 25;
 // функция, которая возвращает случайный элемент массива, индекс которого [0, last_index]
+
 function getRandomElement(elements) {
   return elements[getRandomNumber(0, elements.length - 1)];
 }
+// функция, которая создает объект
+
 function getPhotoDescription() {
   return {
     id: getRandomNumber(1, 25),
@@ -101,6 +104,13 @@ function getPhotoDescription() {
     comments: getRandomNumber(0, 200)
   };
 }
+/*
+  1. Создаем пустой объект
+  2. Запускаем цикл от 1 до 25, в котором:
+    2.1 Создаем переменную, которой присваеваем объект
+    2.2 Присваиваем ключам 'id' и 'url' значения i
+    2.3 Пушим измененный объект в массив
+*/
 const similarDescriptions = [];
 for (let i = 1; i <= SIMILAR_DESCRIPTION_COUNT; i++) {
   const temp = getPhotoDescription();
