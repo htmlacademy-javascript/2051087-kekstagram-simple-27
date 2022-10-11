@@ -119,4 +119,10 @@ for (let i = 1; i <= SIMILAR_DESCRIPTION_COUNT; i++) {
   similarDescriptions.push(temp);
 }
 
+/* Еще один вариант создания массива из 25 объектов, но без соблюдения условия уникальности
+
+Array.from({length: SIMILAR_DESCRIPTION_COUNT}, getPhotoDescription)
+
+*/
+
 
