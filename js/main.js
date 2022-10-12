@@ -1,65 +1,24 @@
-// функция, определяющая случайно генерированное число в диапазоне [min, max)
-// const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1) + min); - один из вариантов стрелочного объявения
 // isNaN() - функция, определяющая не число. Отдает булевый признак
 
-function getRandomNumber(min = 0, max = 10) {
-  if (min < 0 || max < 0 || !isFinite(min) || !isFinite(max) || typeof min === 'string' || typeof max === 'string') {
-    throw new Error('NaN');
+function getRandomPositiveInteger (a, b) {
+  // Если переданы отрицительные числа, возвращаем NaN
+  if (a < 0 || b < 0) {
+    return NaN;
   }
-  if (min >= max) {
-    return Math.floor(Math.random() * (min - max + 1) + max);
-  }
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-getRandomNumber(5, 10);
 
-// функция, принимающая строку и максимальное возможное значение строки и возвращающая булевое значение
+  const lower = Math.ceil(Math.min(a, b));
+  const upper = Math.floor(Math.max(a, b));
+
+  const result = Math.random() * (upper - lower + 1) + lower;
+
+  return Math.floor(result);
+}
 
 function isAllowedLength(string, maxValue) {
   return String(string).length <= maxValue;
 }
 isAllowedLength('keks', 9);
 
-/*
-Функция для создания массива из 25 сгенерированных объектов. Каждый объект массива — описание фотографии, опубликованной пользователем.
-Структура каждого объекта должна быть следующей:
-{
-  id: 1, // идентификатор опубликованной фотографии. Это число от 1 до 25. Идентификаторы не должны повторяться.
-  url: 'photos/1.jpg', // адрес картинки вида photos/{{i}}.jpg, где {{i}} — это число от 1 до 25. Адреса картинок не должны повторяться.
-  description: 'Кот', // описание фотографии. Описание придумайте самостоятельно.
-  likes: 25, // количество лайков, поставленных фотографии. Случайное число от 15 до 200.
-  comments: 150 // количество комментариев, оставленных другими пользователями к этой фотографии. Случайное число от 0 до 200.
-}
-[{...}, {...}, ..., {...}]; // итог. Необходимое количество - 25.
-*/
-
-const URLS = [
-  'photos/1.jpg',
-  'photos/2.jpg',
-  'photos/3.jpg',
-  'photos/4.jpg',
-  'photos/5.jpg',
-  'photos/6.jpg',
-  'photos/7.jpg',
-  'photos/8.jpg',
-  'photos/9.jpg',
-  'photos/10.jpg',
-  'photos/11.jpg',
-  'photos/12.jpg',
-  'photos/13.jpg',
-  'photos/14.jpg',
-  'photos/15.jpg',
-  'photos/16.jpg',
-  'photos/17.jpg',
-  'photos/18.jpg',
-  'photos/19.jpg',
-  'photos/20.jpg',
-  'photos/21.jpg',
-  'photos/22.jpg',
-  'photos/23.jpg',
-  'photos/24.jpg',
-  'photos/25.jpg',
-];
 const DESCRIPTIONS = [
   'Кот',
   'Собака',
@@ -87,42 +46,35 @@ const DESCRIPTIONS = [
   'Ozon',
   'Аналитик',
 ];
+
+const ANY_COUNTS = {
+  MIN_LIKES: 15,
+  MAX_LIKES: 200,
+  MIN_COMMENTS_COOUNT: 0,
+  MAX_COMMENTS_COOUNT: 200
+};
+
 const SIMILAR_DESCRIPTION_COUNT = 25;
-// функция, которая возвращает случайный элемент массива, индекс которого [0, last_index]
 
 function getRandomElement(elements) {
-  return elements[getRandomNumber(0, elements.length - 1)];
+  if (elements.length === 0) {
+    return 'Длина массива = 0';
+  }
+  return elements[getRandomPositiveInteger(0, elements.length - 1)];
 }
-// функция, которая создает объект
 
-function getPhotoDescription() {
+function getPhotoDescription(index) {
   return {
-    id: getRandomNumber(1, 25),
-    url: getRandomElement(URLS),
+    id: index,
+    url: `photos/${index}.jpg`,
     description: getRandomElement(DESCRIPTIONS),
-    likes: getRandomNumber(15, 200),
-    comments: getRandomNumber(0, 200)
+    likes: getRandomPositiveInteger(ANY_COUNTS.MIN_LIKES, ANY_COUNTS.MAX_LIKES),
+    comments: getRandomPositiveInteger(ANY_COUNTS.MIN_COMMENTS_COOUNT, ANY_COUNTS.MAX_COMMENTS_COOUNT)
   };
 }
-/*
-  1. Создаем пустой объект
-  2. Запускаем цикл от 1 до 25, в котором:
-    2.1 Создаем переменную, которой присваеваем объект
-    2.2 Присваиваем ключам 'id' и 'url' значения i
-    2.3 Пушим измененный объект в массив
-*/
-const similarDescriptions = [];
-for (let i = 1; i <= SIMILAR_DESCRIPTION_COUNT; i++) {
-  const temp = getPhotoDescription();
-  temp['id'] = i;
-  temp['url'] = `photos/${i}.jpg`;
-  similarDescriptions.push(temp);
+
+function getDescriptionArray() {
+  return Array.from({ length: SIMILAR_DESCRIPTION_COUNT },
+    (_, indexArr) => getPhotoDescription(indexArr + 1));
 }
-
-/* Еще один вариант создания массива из 25 объектов, но без соблюдения условия уникальности
-
-Array.from({length: SIMILAR_DESCRIPTION_COUNT}, getPhotoDescription)
-
-*/
-
-
+getDescriptionArray();
