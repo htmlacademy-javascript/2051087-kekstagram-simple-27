@@ -29,10 +29,14 @@ const DESCRIPTIONS = [
 ];
 
 const ANY_COUNTS = {
-  MIN_LIKES: 15,
-  MAX_LIKES: 200,
-  MIN_COMMENTS_COOUNT: 0,
-  MAX_COMMENTS_COOUNT: 200
+  LIKES: {
+    MIN_LIKES: 15,
+    MAX_LIKES: 200
+  },
+  COMMENTS: {
+    MIN_COUNT: 0,
+    MAX_COUNT: 200
+  }
 };
 
 const SIMILAR_DESCRIPTION_COUNT = 25;
@@ -42,12 +46,12 @@ function getPhotoDescription(index) {
     id: index,
     url: `photos/${index}.jpg`,
     description: getRandomElement(DESCRIPTIONS),
-    likes: getRandomPositiveInteger(ANY_COUNTS.MIN_LIKES, ANY_COUNTS.MAX_LIKES),
-    comments: getRandomPositiveInteger(ANY_COUNTS.MIN_COMMENTS_COOUNT, ANY_COUNTS.MAX_COMMENTS_COOUNT)
+    likes: getRandomPositiveInteger(ANY_COUNTS.LIKES.MIN_LIKES, ANY_COUNTS.LIKES.MAX_LIKES),
+    comments: getRandomPositiveInteger(ANY_COUNTS.COMMENTS.MIN_COUNT, ANY_COUNTS.COMMENTS.MAX_COUNT)
   };
 }
 
-function getDescriptionArray () {
+function getDescriptionArray() {
   return Array.from({ length: SIMILAR_DESCRIPTION_COUNT },
     (_, indexArr) => getPhotoDescription(indexArr + 1));
 }

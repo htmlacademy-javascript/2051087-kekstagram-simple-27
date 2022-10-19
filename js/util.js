@@ -15,7 +15,7 @@ function getRandomPositiveInteger(a, b) {
 
 function getRandomElement(elements) {
   if (elements.length === 0) {
-    return 'Длина массива = 0';
+    return undefined;
   }
   return elements[getRandomPositiveInteger(0, elements.length - 1)];
 }
