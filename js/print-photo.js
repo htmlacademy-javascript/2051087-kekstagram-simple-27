@@ -1,9 +1,10 @@
 import { getDescriptionArray } from './generate-mock-data.js';
 
+const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
+const pictureContainer = document.querySelector('.pictures');
+const similarPhotos = getDescriptionArray();
+
 function printPhotos() {
-  const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
-  const pictureContainer = document.querySelector('.pictures');
-  const similarPhotos = getDescriptionArray();
   const photosListFragment = document.createDocumentFragment();
 
   similarPhotos.forEach(({ url, likes, comments }) => {
