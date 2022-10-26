@@ -1,2 +1,3 @@
 // window.getDescriptionArray() - для вызова из консоли
-import './print-photo.js';
+import { printPhotos } from './print-photo.js';
+printPhotos();
