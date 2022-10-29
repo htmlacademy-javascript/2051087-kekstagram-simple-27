@@ -28,6 +28,7 @@ function openImageEditingForm() {
 function closeImageEditingForm() {
   imageEditingForm.classList.add('hidden');
   imageScale.className = '';
+  imgUploadInput.value = '';
   document.querySelector('body').classList.remove('modal-open');
 
   document.removeEventListener('keydown', onPopupEscKeydown);
@@ -43,20 +44,18 @@ imgUploadInput.addEventListener('change', () => {
 
 closeEditorFormButton.addEventListener('click', () => {
   closeImageEditingForm();
-  imgUploadInput.value = '';
 });
 
 closeEditorFormButton.addEventListener('keydown', (evt) => {
   if (isEscapeKey(evt)) {
     closeImageEditingForm();
-    imgUploadInput.value = '';
   }
 });
 
 decreaseButton.addEventListener('click', () => {
-  const currentScale = parseInt(scaleField.value);
-  const minValue = parseInt(scaleField.min);
-  const stepValue = parseInt(scaleField.step);
+  const currentScale = parseInt(scaleField.value, 10);
+  const minValue = parseInt(scaleField.min, 10);
+  const stepValue = parseInt(scaleField.step, 10);
   if (currentScale > minValue) {
     const newScale = currentScale - stepValue;
     scaleField.value = `${newScale}%`;
@@ -65,9 +64,9 @@ decreaseButton.addEventListener('click', () => {
 });
 
 increaseButton.addEventListener('click', () => {
-  const currentScale = parseInt(scaleField.value);
-  const maxValue = parseInt(scaleField.max);
-  const stepValue = parseInt(scaleField.step);
+  const currentScale = parseInt(scaleField.value, 10);
+  const maxValue = parseInt(scaleField.max, 10);
+  const stepValue = parseInt(scaleField.step, 10);
   if (currentScale < maxValue) {
     const newScale = currentScale + stepValue;
     scaleField.value = `${newScale}%`;
