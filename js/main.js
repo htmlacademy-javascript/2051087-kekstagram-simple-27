@@ -1,5 +1,3 @@
-import { getDescriptionArray } from './generate-mock-data.js';
-
 // window.getDescriptionArray() - для вызова из консоли
-
-getDescriptionArray();
+import { printPhotos } from './print-photo.js';
+printPhotos();
