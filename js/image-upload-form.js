@@ -77,7 +77,7 @@ increaseButton.addEventListener('click', () => {
 pictureEffectButtons.forEach((radio) => {
   radio.addEventListener('change', () => {
     const elementId = radio.id;
-    const classEffect = imageEditingForm.querySelector(`[for=${ elementId }]`).querySelector('.effects__preview');
+    const classEffect = imageEditingForm.querySelector(`[for=${elementId}]`).querySelector('.effects__preview');
     imageScale.className = '';
     imageScale.classList.add(`${classEffect.classList[1]}`);
   });
