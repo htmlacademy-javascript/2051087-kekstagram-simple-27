@@ -9,6 +9,7 @@ const increaseButton = imageEditingForm.querySelector('.scale__control.scale__co
 const scaleField = imageEditingForm.querySelector('.scale__control.scale__control--value');
 const imageScale = imageEditingForm.querySelector('[data-preview-image="image"]');
 const pictureEffectButtons = imageEditingForm.querySelectorAll('.effects__radio');
+const textArea = imageEditingForm.querySelector('.text__description');
 
 function onPopupEscKeydown(evt) {
   if (isEscapeKey(evt)) {
@@ -29,18 +30,14 @@ function closeImageEditingForm() {
   imageEditingForm.classList.add('hidden');
   imageScale.className = '';
   imgUploadInput.value = '';
+  pictureEffectButtons[0].checked = true;
+  textArea.value = '';
   document.querySelector('body').classList.remove('modal-open');
 
   document.removeEventListener('keydown', onPopupEscKeydown);
 }
 
-// imgUploadInput.addEventListener('click', () => {
-//   openImageEditingForm();
-// });
-
-imgUploadInput.addEventListener('change', () => {
-  openImageEditingForm();
-});
+imgUploadInput.addEventListener('change', openImageEditingForm);
 
 closeEditorFormButton.addEventListener('click', () => {
   closeImageEditingForm();
@@ -53,24 +50,32 @@ closeEditorFormButton.addEventListener('keydown', (evt) => {
 });
 
 decreaseButton.addEventListener('click', () => {
-  const currentScale = parseInt(scaleField.value, 10);
-  const minValue = parseInt(scaleField.min, 10);
-  const stepValue = parseInt(scaleField.step, 10);
-  if (currentScale > minValue) {
-    const newScale = currentScale - stepValue;
-    scaleField.value = `${newScale}%`;
-    imageScale.style.transform = `scale(${newScale / 100})`;
+  const currentScale = Number.parseInt(scaleField.value, 10);
+  const minValue = Number.parseInt(scaleField.min, 10);
+  const stepValue = Number.parseInt(scaleField.step, 10);
+  if (!Number.isNaN(currentScale) && !Number.isNaN(minValue) && !Number.isNaN(stepValue)) {
+    if (currentScale > minValue) {
+      const newScale = currentScale - stepValue;
+      scaleField.value = `${newScale}%`;
+      imageScale.style.transform = `scale(${newScale / 100})`;
+    }
+  } else {
+    throw new Error('NaN - число в разметке не найдено');
   }
 });
 
 increaseButton.addEventListener('click', () => {
-  const currentScale = parseInt(scaleField.value, 10);
-  const maxValue = parseInt(scaleField.max, 10);
-  const stepValue = parseInt(scaleField.step, 10);
-  if (currentScale < maxValue) {
-    const newScale = currentScale + stepValue;
-    scaleField.value = `${newScale}%`;
-    imageScale.style.transform = `scale(${newScale / 100})`;
+  const currentScale = Number.parseInt(scaleField.value, 10);
+  const maxValue = Number.parseInt(scaleField.max, 10);
+  const stepValue = Number.parseInt(scaleField.step, 10);
+  if (!Number.isNaN(currentScale) && !Number.isNaN(maxValue) && !Number.isNaN(stepValue)) {
+    if (currentScale < maxValue) {
+      const newScale = currentScale + stepValue;
+      scaleField.value = `${newScale}%`;
+      imageScale.style.transform = `scale(${newScale / 100})`;
+    }
+  } else {
+    throw new Error('NaN - число в разметке не найдено');
   }
 });
 
