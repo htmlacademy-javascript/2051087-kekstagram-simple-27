@@ -85,4 +85,3 @@ pictureEffectButtons.forEach((radio) => {
     imageScale.classList.add(`${classEffect.classList[1]}`);
   });
 });
-
