@@ -39,9 +39,7 @@ function closeImageEditingForm() {
 
 imgUploadInput.addEventListener('change', openImageEditingForm);
 
-closeEditorFormButton.addEventListener('click', () => {
-  closeImageEditingForm();
-});
+closeEditorFormButton.addEventListener('click', closeImageEditingForm);
 
 closeEditorFormButton.addEventListener('keydown', (evt) => {
   if (isEscapeKey(evt)) {
