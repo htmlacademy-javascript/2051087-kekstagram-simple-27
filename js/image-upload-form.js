@@ -11,6 +11,11 @@ const imageScale = imageEditingForm.querySelector('[data-preview-image="image"]'
 const pictureEffectButtons = imageEditingForm.querySelectorAll('.effects__radio');
 const textArea = imageEditingForm.querySelector('.text__description');
 
+const DEFAULT_VALUES = {
+  NOTATION: 10,
+  SCALE_VALUE: 100
+};
+
 function onPopupEscKeydown(evt) {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
@@ -48,14 +53,14 @@ closeEditorFormButton.addEventListener('keydown', (evt) => {
 });
 
 decreaseButton.addEventListener('click', () => {
-  const currentScale = Number.parseInt(scaleField.value, 10);
-  const minValue = Number.parseInt(scaleField.min, 10);
-  const stepValue = Number.parseInt(scaleField.step, 10);
+  const currentScale = Number.parseInt(scaleField.value, DEFAULT_VALUES.NOTATION);
+  const minValue = Number.parseInt(scaleField.min, DEFAULT_VALUES.NOTATION);
+  const stepValue = Number.parseInt(scaleField.step, DEFAULT_VALUES.NOTATION);
   if (!Number.isNaN(currentScale) && !Number.isNaN(minValue) && !Number.isNaN(stepValue)) {
     if (currentScale > minValue) {
       const newScale = currentScale - stepValue;
       scaleField.value = `${newScale}%`;
-      imageScale.style.transform = `scale(${newScale / 100})`;
+      imageScale.style.transform = `scale(${newScale / DEFAULT_VALUES.SCALE_VALUE})`;
     }
   } else {
     throw new Error('NaN - число в разметке не найдено');
@@ -63,14 +68,14 @@ decreaseButton.addEventListener('click', () => {
 });
 
 increaseButton.addEventListener('click', () => {
-  const currentScale = Number.parseInt(scaleField.value, 10);
-  const maxValue = Number.parseInt(scaleField.max, 10);
-  const stepValue = Number.parseInt(scaleField.step, 10);
+  const currentScale = Number.parseInt(scaleField.value, DEFAULT_VALUES.NOTATION);
+  const maxValue = Number.parseInt(scaleField.max, DEFAULT_VALUES.NOTATION);
+  const stepValue = Number.parseInt(scaleField.step, DEFAULT_VALUES.NOTATION);
   if (!Number.isNaN(currentScale) && !Number.isNaN(maxValue) && !Number.isNaN(stepValue)) {
     if (currentScale < maxValue) {
       const newScale = currentScale + stepValue;
       scaleField.value = `${newScale}%`;
-      imageScale.style.transform = `scale(${newScale / 100})`;
+      imageScale.style.transform = `scale(${newScale / DEFAULT_VALUES.SCALE_VALUE})`;
     }
   } else {
     throw new Error('NaN - число в разметке не найдено');
