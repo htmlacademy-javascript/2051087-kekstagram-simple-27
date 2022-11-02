@@ -13,7 +13,8 @@ const textArea = imageEditingForm.querySelector('.text__description');
 
 const DefaultValues = {
   NOTATION: 10,
-  SCALE_VALUE: 100
+  SCALE_VALUE: 100,
+  TRANSFORM_SCALE: 1
 };
 
 function onPopupEscKeydown(evt) {
@@ -34,6 +35,8 @@ function openImageEditingForm() {
 function closeImageEditingForm() {
   imageEditingForm.classList.add('hidden');
   imageScale.className = '';
+  imageScale.style.transform = `scale(${DefaultValues.TRANSFORM_SCALE})`;
+  scaleField.value = `${DefaultValues.SCALE_VALUE}%`;
   imgUploadInput.value = '';
   pictureEffectButtons[0].checked = true;
   textArea.value = '';
