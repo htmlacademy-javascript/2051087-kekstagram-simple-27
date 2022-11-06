@@ -1,4 +1,5 @@
 import { isEscapeKey } from './util.js';
+import { sliderElement } from './photo-effect-slider.js';
 
 const imageForm = document.querySelector('.img-upload__form');
 const imgUploadInput = imageForm.querySelector('#upload-file');
@@ -34,8 +35,10 @@ function openImageEditingForm() {
 
 function closeImageEditingForm() {
   imageEditingForm.classList.add('hidden');
+  sliderElement.classList.add('hidden');
   imageScale.className = '';
   imageScale.style.transform = `scale(${DefaultValues.TRANSFORM_SCALE})`;
+  imageScale.style.filter = '';
   scaleField.value = `${DefaultValues.SCALE_VALUE}%`;
   imgUploadInput.value = '';
   pictureEffectButtons[0].checked = true;
