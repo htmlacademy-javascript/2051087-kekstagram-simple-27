@@ -1,5 +1,5 @@
 import { isEscapeKey } from './util.js';
-import { sliderElement } from './photo-effect-slider.js';
+import { sliderElement } from './slider-element.js';
 
 const imageForm = document.querySelector('.img-upload__form');
 const imgUploadInput = imageForm.querySelector('#upload-file');

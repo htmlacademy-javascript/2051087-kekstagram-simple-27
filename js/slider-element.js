@@ -3,7 +3,6 @@ const valueElement = document.querySelector('.effect-level__value');
 const formElement = document.querySelector('.img-upload__form');
 const imageEffect = formElement.querySelector('[data-preview-image="image"]');
 const noneEffect = formElement.querySelector('#effect-none');
-// valueElement.value = 1;
 
 noUiSlider.create(sliderElement, {
   range: {
@@ -35,7 +34,6 @@ sliderElement.noUiSlider.on('update', () => {
 formElement.addEventListener('change', (evt) => {
   if (evt.target.checked) {
     if (evt.target.value === 'none') {
-      imageEffect.style.filter = '';
       hideSlider();
     } else if (evt.target.value === 'chrome') {
       sliderElement.noUiSlider.updateOptions({
