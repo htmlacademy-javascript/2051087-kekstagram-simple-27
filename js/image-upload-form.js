@@ -96,12 +96,12 @@ pictureEffectButtons.forEach((radio) => {
   });
 });
 
-function blockSubmitButton () {
+function blockSubmitButton() {
   imgButtonSubmit.disabled = true;
   imgButtonSubmit.textContent = 'Публикую...';
 }
 
-function unblockSubmitButton () {
+function unblockSubmitButton() {
   imgButtonSubmit.disabled = false;
   imgButtonSubmit.textContent = 'Опубликовать';
 }
@@ -110,7 +110,6 @@ function setUserFormSubmit(onSuccess) {
   imageForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
     blockSubmitButton();
-
     sendData(
       () => {
         onSuccess();
