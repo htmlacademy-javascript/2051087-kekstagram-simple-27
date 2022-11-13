@@ -1,5 +1,7 @@
 import { isEscapeKey } from './util.js';
 import { sliderElement } from './slider-element.js';
+import { sendData } from './api.js';
+import { showAlert } from './util.js';
 
 const imageForm = document.querySelector('.img-upload__form');
 const imgUploadInput = imageForm.querySelector('#upload-file');
@@ -11,6 +13,7 @@ const scaleField = imageEditingForm.querySelector('.scale__control.scale__contro
 const imageScale = imageEditingForm.querySelector('[data-preview-image="image"]');
 const pictureEffectButtons = imageEditingForm.querySelectorAll('.effects__radio');
 const textArea = imageEditingForm.querySelector('.text__description');
+const imgButtonSubmit = imageEditingForm.querySelector('.img-upload__submit');
 
 const DefaultValues = {
   NOTATION: 10,
@@ -92,3 +95,53 @@ pictureEffectButtons.forEach((radio) => {
     imageScale.classList.add(`${classEffect.classList[1]}`);
   });
 });
+
+function blockSubmitButton () {
+  imgButtonSubmit.disabled = true;
+  imgButtonSubmit.textContent = 'Публикую...';
+}
+
+function unblockSubmitButton () {
+  imgButtonSubmit.disabled = false;
+  imgButtonSubmit.textContent = 'Опубликовать';
+}
+
+function setUserFormSubmit(onSuccess) {
+  imageForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    blockSubmitButton();
+
+    sendData(
+      () => {
+        onSuccess();
+        unblockSubmitButton();
+      },
+      () => {
+        showAlert('Произошла ошибка. Попробуйте повторить позже.');
+        unblockSubmitButton();
+      },
+      new FormData(evt.target),
+    );
+  });
+}
+
+// function setUserFormSubmit(onSuccess) {
+//   imageForm.addEventListener('submit', (evt) => {
+//     evt.preventDefault();
+//     blockSubmitButton();
+
+//     sendData(
+//       () => {
+//         onSuccess();
+//         unblockSubmitButton();
+//       },
+//       () => {
+//         showAlert('Произошла ошибка. Попробуйте повторить позже.');
+//         unblockSubmitButton();
+//       },
+//       evt,
+//     );
+//   });
+// }
+
+export { setUserFormSubmit, closeImageEditingForm };
