@@ -125,23 +125,4 @@ function setUserFormSubmit(onSuccess) {
   });
 }
 
-// function setUserFormSubmit(onSuccess) {
-//   imageForm.addEventListener('submit', (evt) => {
-//     evt.preventDefault();
-//     blockSubmitButton();
-
-//     sendData(
-//       () => {
-//         onSuccess();
-//         unblockSubmitButton();
-//       },
-//       () => {
-//         showAlert('Произошла ошибка. Попробуйте повторить позже.');
-//         unblockSubmitButton();
-//       },
-//       evt,
-//     );
-//   });
-// }
-
 export { setUserFormSubmit, closeImageEditingForm };

@@ -33,26 +33,4 @@ const sendData = (onSuccess, onError, body) => {
     });
 };
 
-// const sendData = (onSuccess, onError, evt) => {
-//   fetch('https://27.javascript.pages.academy/kekstagram-simple',
-//     {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: new FormData(evt.target),
-//     },
-//   )
-//     .then((response) => {
-//       if (response.ok) {
-//         onSuccess();
-//       } else {
-//         onError('Произошла ошибка. Попробуйте повторить позже.');
-//       }
-//     })
-//     .catch(() => {
-//       onError('Произошла ошибка. Попробуйте повторить позже.');
-//     });
-// };
-
 export { getData, sendData };
