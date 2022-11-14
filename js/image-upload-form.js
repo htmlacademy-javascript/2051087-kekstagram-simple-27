@@ -112,7 +112,6 @@ function setUserFormSubmit(onSuccess) {
     blockSubmitButton();
 
     sendData(
-      evt,
       () => {
         onSuccess();
         unblockSubmitButton();
@@ -121,6 +120,7 @@ function setUserFormSubmit(onSuccess) {
         showAlert('Произошла ошибка. Попробуйте повторить позже.');
         unblockSubmitButton();
       },
+      new FormData(evt.target),
     );
   });
 }
