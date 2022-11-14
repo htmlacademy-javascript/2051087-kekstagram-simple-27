@@ -11,15 +11,11 @@ const getData = (onSuccess, onError) => {
     .catch(() => onError('Произошла ошибка. Попробуйте повторить позже.'));
 };
 
-const sendData = (onSuccess, onError, body) => {
+const sendData = (evt, onSuccess, onError) => {
   fetch('https://27.javascript.pages.academy/kekstagram-simple',
     {
       method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'multipart/form-data',
-      },
-      body,
+      body: new FormData(evt.target),
     },
   )
     .then((response) => {
