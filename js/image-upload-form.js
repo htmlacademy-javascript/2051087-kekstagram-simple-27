@@ -1,8 +1,7 @@
 import { isEscapeKey } from './util.js';
 import { sliderElement } from './slider-element.js';
 import { sendData } from './api.js';
-import { showAlert } from './util.js';
-import { showSuccessTemplate } from './response.js';
+import { showSuccessTemplate, showErrorTemplate } from './response.js';
 
 const imageForm = document.querySelector('.img-upload__form');
 const imgUploadInput = imageForm.querySelector('#upload-file');
@@ -15,8 +14,6 @@ const imageScale = imageEditingForm.querySelector('[data-preview-image="image"]'
 const pictureEffectButtons = imageEditingForm.querySelectorAll('.effects__radio');
 const textArea = imageEditingForm.querySelector('.text__description');
 const imgButtonSubmit = imageEditingForm.querySelector('.img-upload__submit');
-const successModal = document.querySelector('.success');
-const successModalButton = document.querySelector('.success__button');
 
 const DefaultValues = {
   NOTATION: 10,
@@ -121,7 +118,7 @@ function setUserFormSubmit(onSuccess) {
         showSuccessTemplate();
       },
       () => {
-        showAlert('Произошла ошибка. Попробуйте повторить позже.');
+        showErrorTemplate();
         unblockSubmitButton();
       },
       new FormData(evt.target),

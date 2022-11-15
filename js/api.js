@@ -12,7 +12,7 @@ const getData = (onSuccess, onError) => {
 };
 
 const sendData = (onSuccess, onError, body) => {
-  fetch('https://27.javascript.pages.academy/kekstagram-simple',
+  fetch('https://27.javascript.pages.academy/kekstagram-simpleж',
     {
       method: 'POST',
       body,
@@ -22,11 +22,11 @@ const sendData = (onSuccess, onError, body) => {
       if (response.ok) {
         onSuccess();
       } else {
-        onError('Произошла ошибка. Попробуйте повторить позже.');
+        onError();
       }
     })
     .catch(() => {
-      onError('Произошла ошибка. Попробуйте повторить позже.');
+      onError();
     });
 };
 
