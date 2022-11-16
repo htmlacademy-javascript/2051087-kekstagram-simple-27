@@ -12,7 +12,7 @@ const getData = (onSuccess, onError) => {
 };
 
 const sendData = (onSuccess, onError, body) => {
-  fetch('https://27.javascript.pages.academy/kekstagram-simpleж',
+  fetch('https://27.javascript.pages.academy/kekstagram-simple',
     {
       method: 'POST',
       body,
