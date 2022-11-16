@@ -1,5 +1,5 @@
 // isNaN() - функция, определяющая не число. Отдает булевый признак
-const ALERT_SHOW_TIME = 5000;
+const ALERT_SHOW_TIME = 1000 * 5;
 
 function getRandomPositiveInteger(a, b) {
 

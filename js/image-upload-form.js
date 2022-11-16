@@ -15,6 +15,9 @@ const pictureEffectButtons = imageEditingForm.querySelectorAll('.effects__radio'
 const textArea = imageEditingForm.querySelector('.text__description');
 const imgButtonSubmit = imageEditingForm.querySelector('.img-upload__submit');
 
+const photo = imageForm.querySelector('[data-preview-image="image"]');
+const radioButtonsPhotos = imageForm.querySelectorAll('.effects__preview');
+
 const DefaultValues = {
   NOTATION: 10,
   SCALE_VALUE: 100,
@@ -52,6 +55,12 @@ function closeImageEditingForm() {
 }
 
 imgUploadInput.addEventListener('change', openImageEditingForm);
+
+imgUploadInput.addEventListener('change', (evt) => {
+  const url = URL.createObjectURL(evt.target.files[0]);
+  radioButtonsPhotos.forEach((item) => {item.style.backgroundImage = `url('${url}')`;});
+  photo.src = url;
+});
 
 closeEditorFormButton.addEventListener('click', closeImageEditingForm);
 
@@ -106,7 +115,7 @@ function unblockSubmitButton() {
   imgButtonSubmit.textContent = 'Опубликовать';
 }
 
-function setUserFormSubmit(onSuccess) {
+function handleSubmit(onSuccess) {
   imageForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
     blockSubmitButton();
@@ -126,4 +135,4 @@ function setUserFormSubmit(onSuccess) {
   });
 }
 
-export { setUserFormSubmit, closeImageEditingForm };
+export { handleSubmit, closeImageEditingForm };
