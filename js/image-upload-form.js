@@ -58,7 +58,7 @@ imgUploadInput.addEventListener('change', openImageEditingForm);
 
 imgUploadInput.addEventListener('change', (evt) => {
   const url = URL.createObjectURL(evt.target.files[0]);
-  radioButtonsPhotos.forEach((item) => {item.style.backgroundImage = `url('${url}')`;});
+  radioButtonsPhotos.forEach((item) => { item.style.backgroundImage = `url('${url}')`; });
   photo.src = url;
 });
 
@@ -127,6 +127,7 @@ function handleSubmit(onSuccess) {
         showSuccessTemplate();
       },
       () => {
+        document.removeEventListener('keydown', onPopupEscKeydown);
         showErrorTemplate();
         unblockSubmitButton();
       },
@@ -135,4 +136,4 @@ function handleSubmit(onSuccess) {
   });
 }
 
-export { handleSubmit, closeImageEditingForm };
+export { handleSubmit, closeImageEditingForm, onPopupEscKeydown };
