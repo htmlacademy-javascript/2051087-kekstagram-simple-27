@@ -17,7 +17,7 @@ function showSuccessTemplate() {
   document.addEventListener('keydown', onSuccessEscKeydown, { once: true });
 
   successElement.addEventListener('click', (evt) => {
-    if(evt.target.className === 'success' && evt.currentTarget.className === 'success') {
+    if (evt.target.className === 'success' && evt.currentTarget.className === 'success') {
       successElement.remove();
     }
   });
@@ -45,7 +45,7 @@ function showErrorTemplate() {
   document.addEventListener('keydown', onErrorEscKeydown, { once: true });
 
   errorElement.addEventListener('click', (evt) => {
-    if(evt.target.className === 'error' && evt.currentTarget.className === 'error') {
+    if (evt.target.className === 'error' && evt.currentTarget.className === 'error') {
       errorElement.remove();
     }
   });

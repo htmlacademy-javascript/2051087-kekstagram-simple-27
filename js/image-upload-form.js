@@ -58,7 +58,7 @@ imgUploadInput.addEventListener('change', openImageEditingForm);
 
 imgUploadInput.addEventListener('change', (evt) => {
   const url = URL.createObjectURL(evt.target.files[0]);
-  radioButtonsPhotos.forEach((item) => {item.style.backgroundImage = `url('${url}')`;});
+  radioButtonsPhotos.forEach((item) => { item.style.backgroundImage = `url('${url}')`; });
   photo.src = url;
 });
 
