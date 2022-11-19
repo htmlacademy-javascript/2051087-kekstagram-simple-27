@@ -3,6 +3,12 @@ import { sliderElement } from './slider-element.js';
 import { sendData } from './api.js';
 import { showSuccessTemplate, showErrorTemplate } from './response.js';
 
+const DefaultValues = {
+  NOTATION: 10,
+  SCALE_VALUE: 100,
+  TRANSFORM_SCALE: 1
+};
+
 const imageForm = document.querySelector('.img-upload__form');
 const imgUploadInput = imageForm.querySelector('#upload-file');
 const imageEditingForm = imageForm.querySelector('.img-upload__overlay');
@@ -17,12 +23,6 @@ const imgButtonSubmit = imageEditingForm.querySelector('.img-upload__submit');
 
 const photo = imageForm.querySelector('[data-preview-image="image"]');
 const radioButtonsPhotos = imageForm.querySelectorAll('.effects__preview');
-
-const DefaultValues = {
-  NOTATION: 10,
-  SCALE_VALUE: 100,
-  TRANSFORM_SCALE: 1
-};
 
 function onPopupEscKeydown(evt) {
   if (isEscapeKey(evt)) {
