@@ -48,7 +48,7 @@ function showErrorTemplate() {
       if (evt.key === 'Escape') {
         evt.preventDefault();
         errorElement.remove();
-        resolve('выполнено');
+        resolve();
       }
     }, { once: true });
   });
