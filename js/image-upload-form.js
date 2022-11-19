@@ -136,4 +136,4 @@ function handleSubmit(onSuccess) {
   });
 }
 
-export { handleSubmit, closeImageEditingForm };
+export { handleSubmit, closeImageEditingForm, onPopupEscKeydown };

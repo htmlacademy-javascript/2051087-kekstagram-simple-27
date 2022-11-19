@@ -5,6 +5,7 @@ const getData = (onSuccess, onError) => {
         return response;
       }
       throw new Error(`${response.status} - ${response.statusText}`);
+
     })
     .then((response) => response.json())
     .then((data) => onSuccess(data))

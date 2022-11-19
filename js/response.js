@@ -1,4 +1,5 @@
 import { isEscapeKey } from './util.js';
+import { onPopupEscKeydown } from './image-upload-form.js';
 
 const successTemplate = document.querySelector('#success').content.querySelector('.success');
 const errorTemplate = document.querySelector('#error').content.querySelector('.error');
@@ -42,7 +43,17 @@ function showErrorTemplate() {
     document.removeEventListener('keydown', onErrorEscKeydown);
   });
 
-  document.addEventListener('keydown', onErrorEscKeydown, { once: true });
+  const onClickErrorPromise = new Promise((resolve) => {
+    document.addEventListener('keydown', (evt) => {
+      if (evt.key === 'Escape') {
+        evt.preventDefault();
+        errorElement.remove();
+        resolve('выполнено');
+      }
+    }, { once: true });
+  });
+  onClickErrorPromise
+    .then(() => document.addEventListener('keydown', onPopupEscKeydown));
 
   errorElement.addEventListener('click', (evt) => {
     if (evt.target.className === 'error' && evt.currentTarget.className === 'error') {
